@@ -1,0 +1,80 @@
+/* Global reset and layout */
+html, body {
+  height: 100%;          /* full viewport height */
+  margin: 0;             /* remove default margins */
+  display: flex;         /* stack header, content, footer vertically */
+  flex-direction: column;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header banner */
+header {
+  background-image: url("../images/creek1.jpg"); /* adjust path relative to CSS file */
+  background-size: cover;       /* scale to fill header */
+  background-position: center;  /* center the image */
+  background-repeat: no-repeat;
+  height: 200px;                /* banner height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+header h1 {
+  font-size: 45px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* improves readability */
+}
+
+/* Navigation bar inside header */
+header nav {
+  background-color: #493f3f4b; /* solid dark bar */
+  padding: 10px;
+}
+
+header nav a {
+  color: #fff;            /* white text */
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Page layout (sidebar + main content) */
+.page-layout {
+  flex: 1;               /* grows to fill space and pushes footer down */
+  display: flex;         /* sidebar + main content side by side */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: rgba(0,0,0,0.5); /* semi-transparent overlay */
+  padding: 15px;
+  border-right: 1px solid #d11c1c;
+  color: white;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;               /* take remaining space */
+  padding: 20px;
+  background-color: rgba(255,255,255,0.8); /* light overlay for readability */
+}
+
+/* Footer */
+footer {
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+  
+
+
+
