@@ -74,7 +74,32 @@ footer {
   padding: 15px;
 }
 
-  
+ /* --- Tools Gallery Styles --- */
+.tools-gallery {
+  display: flex;                /* put items in a row */
+  gap: 20px;                    /* spacing between images */
+  flex-wrap: wrap;              /* wrap to next line if screen is narrow */
+  justify-content: flex-start;  /* align items to the left */
+}
+
+.tools-gallery figure {
+  text-align: center;           /* center captions under images */
+  margin: 0;                    /* remove default margins */
+}
+
+.tools-gallery img {
+  max-width: 100%;              /* responsive images */
+  height: auto;
+  border: 2px solid #c71212;       /* optional border */
+  border-radius: 8px;           /* rounded corners */
+}
+
+.tools-gallery figcaption {
+  font-size: 14px;
+  color: #8b0d0d;                  /* light text for dark sidebar */
+  margin-top: 5px;
+}
+ 
 
 
 
