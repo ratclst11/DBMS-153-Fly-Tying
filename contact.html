@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Sugar Creek Fly Tying</title>
+  <meta name="description" content="Get in touch with Sugar Creek Fly Tying for tutorials, tips, and fly tying advice. Contact us today.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -32,30 +33,151 @@
   </header>
 
   <!-- Main Content -->
-  <main id="main-content" class="main-content" role="main">
-    <section>
-      <h2>Contact Me</h2>
-      <p>If you’d like to get in touch, please use the form below or reach out directly.</p>
+  <form id="contactForm" action="#" method="post" class="contact-form" novalidate> 
+    <div class="input-row"> 
+      <label for="name">Name:</label><br> 
+      <input type="text" id="name" name="name" required> 
+      <div class="error" id="nameError" aria-live="polite"></div> 
+    </div> 
+    <div class="input-row"> 
+      <label for="email">Email:</label><br> 
+      <input type="email" id="email" name="email" required> 
+      <div class="error" id="emailError" aria-live="polite"></div> 
+    </div> 
+    <div class="input-row"> 
+      <label for="message">Message:</label><br> 
+      <textarea id="message" name="message" rows="5" required></textarea> 
+      <div class="error" id="messageError" aria-live="polite"></div> 
+    </div> 
+    <button type="submit" id="submitBtn">Send Message</button> 
+  </form>
 
-      <!-- Contact Form -->
-      <form action="#" method="post" class="contact-form">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+  <!-- Accessible status message (hidden until used) --> 
+   <div id="formStatus" class="status hidden" role="status" aria-live="polite" aria-atomic="true"></div> 
+  </section> 
+</main>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
+  <!-- Call to Action -->  
+   <section class="cta"> 
+    <h2>Stay Connected</h2> 
+    <p>Don’t miss out on new fly patterns and tying tips — check back often for updates!</p> 
+    <a href="index.html" class="cta-button">Return Home</a> 
+  </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Sugar Creek Fly Tying. All rights reserved.</p>
   </footer>
-</body>
-</html>
+
+  <!-- Inline script: validation, inline errors, and accessible success message --> 
+   <script> 
+   document.addEventListener('DOMContentLoaded', () => { 
+    const form = document.getElementById('contactForm'); 
+    const submitBtn = document.getElementById('submitBtn'); 
+    const status = document.getElementById('formStatus'); 
+    
+    const fields = [ 
+      { el: document.getElementById('name'), err: document.getElementById('nameError') }, 
+      { el: document.getElementById('email'), err: document.getElementById('emailError') }, 
+      { el: document.getElementById('message'), err: document.getElementById('messageError') }, 
+    ]; 
+    
+    function getMessage(el) { 
+      if (el.validity.valueMissing) return 'This field is required.'; 
+      if (el.type === 'email' && el.validity.typeMismatch) return 'Enter a valid email address.'; 
+      if (el.validity.tooShort) return `Please lengthen this text to ${el.minLength} characters or more.`; 
+      return el.validationMessage || 'Please complete this field.'; 
+    }
+
+    function showFieldError(field) { 
+      const { el, err } = field; 
+      if (el.validity.valid) { 
+        err.textContent = '';
+        err.classList.remove('show'); 
+        el.removeAttribute('aria-invalid'); 
+      } else { 
+        err.textContent = getMessage(el); 
+        err.classList.add('show'); 
+        el.setAttribute('aria-invalid', 'true'); 
+      } 
+    } 
+    // Live validation on input and blur 
+    fields.forEach(field => { 
+      field.el.addEventListener('input', () => showFieldError(field)); 
+      field.el.addEventListener('blur', () => showFieldError(field)); 
+    }); 
+    function showStatus(message, type = 'success') { 
+      status.textContent = message; 
+      status.className = `status ${type}`; 
+      status.classList.remove('hidden'); 
+      status.setAttribute('tabindex', '-1'); 
+      status.focus(); 
+      status.removeAttribute('tabindex'); 
+    } 
+    
+    function clearStatus() { 
+      status.textContent = ''; 
+      status.className = 'status hidden'; 
+    } 
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); clearStatus(); 
+      
+      // Validate all fields 
+      let valid = true; 
+      fields.forEach(field => { 
+        showFieldError(field); 
+        if (!field.el.validity.valid) valid = false; 
+      }); 
+      
+      if (!valid) { 
+        const firstInvalid = fields.find(f => !f.el.validity.valid); 
+        if (firstInvalid) firstInvalid.el.focus(); 
+        return; 
+      } 
+      // Prevent duplicate submits 
+      submitBtn.disabled = true; 
+      const formData = new FormData(form);
+
+try { 
+  // If you later set a real endpoint in form.action, the script will POST to it. 
+  const action = (form.getAttribute('action') || '').trim(); 
+  if (action && action !== '#') { 
+    const response = await fetch(action, { 
+      method: form.getAttribute('method') || 'POST', 
+      body: formData, }); 
+      if (!response.ok) throw new Error('Network response was not ok'); 
+      // Optionally show server message if JSON { message: "..." } returned 
+      let serverMsg = ''; 
+      try { 
+        const json = await response.json(); 
+        if (json && json.message) serverMsg = json.message; 
+      } catch (_) {} 
+      showStatus(serverMsg || 'Thank you — your message has been sent. We will reply within 2 business days.', 'success'); } else { 
+        // No real endpoint: simulate success for static sites 
+        showStatus('Thank you — your message has been received. We will reply within 2 business days.', 'success'); 
+      } 
+      
+      form.reset(); 
+      fields.forEach(f => { 
+        f.err.textContent = ''; 
+        f.err.classList.remove('show'); 
+        f.el.removeAttribute('aria-invalid'); 
+      });
+
+} catch (err) { 
+  console.error(err); 
+  showStatus('Sorry — there was a problem sending your message. Please try again later.', 'error'); 
+  } finally { 
+    submitBtn.disabled = false; 
+    } 
+    }); 
+    }); 
+    </script> 
+    </body> 
+    </html>
+
+
+
+
+
