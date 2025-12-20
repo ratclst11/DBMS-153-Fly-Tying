@@ -74,7 +74,7 @@ footer {
   padding: 15px;
 }
 
- /* --- Tools Gallery Styles --- */
+ /*  Tools Gallery Styles  */
 .tools-gallery {
   display: flex;                
   gap: 20px;                    
@@ -93,7 +93,7 @@ footer {
   margin-top: 5px;
 }
 
-/* --- Flies Gallery Styles --- */
+/*  Flies Gallery Styles  */
 .flies-gallery {
   display: flex;
   gap: 30px;
@@ -102,8 +102,8 @@ footer {
 }
 
 .flies-gallery figure { 
-  flex: 1 1 250px; /* each figure gets equal width */ 
-  text-align: center; /* keeps captions centered under images */ 
+  flex: 1 1 250px;  
+  text-align: center;  
 }
 
 .flies-gallery img {
@@ -113,7 +113,7 @@ footer {
   border-radius: 8px;
 }
 
-/* --- Pictures Gallery Styles --- */
+/*  Pictures Gallery Styles  */
 .pictures-gallery {
   display: flex;
   gap: 20px;
@@ -136,7 +136,7 @@ footer {
 .pictures-gallery img, 
 .tools-gallery img, 
 .flies-gallery img { 
-  max-width: 250px; /* cap size on desktop */ 
+  max-width: 250px;  
   height: auto; 
   border: 2px solid #c71212; 
   border-radius: 8px; 
@@ -146,11 +146,11 @@ footer {
   .pictures-gallery img, 
   .tools-gallery img, 
   .flies-gallery img { 
-    max-width: 100%; /* let them shrink to fit screen */ 
+    max-width: 100%;  
   } 
 }
 
-/* --- Contact Form Styles --- */
+/*  Contact Form Styles  */
 .contact-form {
   max-width: 500px;
   margin: 20px auto;
@@ -188,7 +188,7 @@ footer {
 }
 
 
-/* --- Table Styles --- */
+/*  Table Styles  */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -225,7 +225,7 @@ tbody tr:hover {
 .table-container table { width: 100%; border-collapse: collapse; 
 }
 
-/* Accessibility: focus styles for keyboard navigation */
+/* styles for keyboard navigation */
 a:focus,
 button:focus {
   outline: 2px solid #005fcc;
@@ -254,7 +254,7 @@ button:focus {
   z-index: 1000;
 }
 
-/* --- Logo Styles --- */
+/*  Logo Styles  */
 /* Logo */
 .site-logo {
   height: 250px;   
@@ -291,7 +291,7 @@ header nav a:focus {
   text-decoration: underline;
 }
 
-/* --- Call to Action Styles --- */
+/*  Call to Action Styles  */
 .cta {
   text-align: center;
   margin: 40px 0;
@@ -311,7 +311,7 @@ header nav a:focus {
 
 
 
-/* --- Mobile Adjustments --- */
+/*  Mobile Adjustments */
 @media (max-width: 768px) {
   
   /* Header */
@@ -401,7 +401,7 @@ header nav a:focus {
   }
 }
 
-/* Form helpers: inline errors and status message */
+/* Form helpers status message */
 .input-row { margin-bottom: 0.75rem; }
 
 .error {
@@ -429,3 +429,6 @@ textarea[aria-invalid="true"] {
 .status.error { background: #fff1f2; color: #7f1d1d; border: 1px solid #f5c2c7; }
 
 button[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+
+
